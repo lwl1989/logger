@@ -145,8 +145,6 @@ func getMysqlLogger(config MysqlLogConfig) *Log {
 	return &Log{
 		Log: &MysqlLog{
 			Config:config,
-			DB:config.GetMysqlDb(),
-			TABLE:config.GetMysqlTable(),
 		},
 	}
 }
@@ -161,6 +159,8 @@ func getFileLogger(config FileLogConfig) *Log {
 //return a logger driver typeof mongodb
 func getMongodbLogger(config MongodbLogConfig) *Log {
 	return &Log{
-		//todo: need add
+		Log: &MongodbLog{
+			Config:config,
+		},
 	}
 }
