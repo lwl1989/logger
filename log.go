@@ -19,8 +19,8 @@ const (
 )
 
 const (
-	TypeFile  string = "file"
-	TypeMgo          = "mgo"
+	TypeFile         = "file"
+	TypeMgo          = "mongodb"
 	TypeMysql        = "mysql"
 )
 
@@ -64,7 +64,7 @@ type DoLog interface {
 }
 
 /**
- * get a log driver with driver name (mysql|file)
+ * get a log driver with driver name (mysql|file|mongodb)
  * if errs
  * return nil
  */
