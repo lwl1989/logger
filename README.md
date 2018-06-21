@@ -8,24 +8,24 @@ go get -u github.com/lwl1989/logger
 
 mysql config interface
 ```
-    GetMysqlDns() string
-	GetMysqlUser()  string
-	GetMysqlPw() string
-	GetMysqlDb() string
-	GetMysqlTable() string
+GetMysqlDns() string
+GetMysqlUser()  string
+GetMysqlPw() string
+GetMysqlDb() string
+GetMysqlTable() string
 ```
 
 mongodb config interface
 ```
-    GetMongodbDns() string
-	GetMongodbPw()  string
-	GetMongodbDb() string
-	GetMongodbCollection() string
+GetMongodbDns() string
+GetMongodbPw() string
+GetMongodbDb() string
+GetMongodbCollection() string
 ```
 
 file config interface
 ```
-    GetFilePath() interface{}
+GetFilePath() interface{}
 ```
 
 get a logger with driver
