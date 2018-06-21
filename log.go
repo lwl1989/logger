@@ -70,7 +70,7 @@ type DoLog interface {
  */
 func GetLogger(driver string, config interface{}) (*TTLog,error)  {
 	if driver == TypeFile {
-		if conf,ok := config.(*FileLogConfig); ok {
+		if conf,ok := config.(FileLogConfig); ok {
 			return GetFileLogger(conf),nil
 		}else{
 			return nil,errors.New("config is not impl FileLogConfig")
@@ -78,7 +78,7 @@ func GetLogger(driver string, config interface{}) (*TTLog,error)  {
 	}
 
 	if driver == TypeMysql {
-		if conf,ok := config.(*MysqlLogConfig); ok {
+		if conf,ok := config.(MysqlLogConfig); ok {
 			return GetMysqlLogger(conf),nil
 		}else{
 			return nil,errors.New("config is not impl MysqlConfig")
@@ -86,7 +86,7 @@ func GetLogger(driver string, config interface{}) (*TTLog,error)  {
 	}
 
 	if driver == TypeMgo {
-		if conf,ok := config.(*MongodbLogConfig); ok {
+		if conf,ok := config.(MongodbLogConfig); ok {
 			return GetMongodbLogger(conf),nil
 		}else{
 			return nil,errors.New("config is not impl MongodbLogConfig")
