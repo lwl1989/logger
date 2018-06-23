@@ -145,6 +145,7 @@ func getMysqlLogger(config MysqlLogConfig) *Log {
 	return &Log{
 		Log: &MysqlLog{
 			Config:config,
+			mu: new(sync.Mutex),
 		},
 	}
 }
@@ -153,6 +154,7 @@ func getFileLogger(config FileLogConfig) *Log {
 	return &Log{
 		Log: &FileLog{
 			FilePath: config.GetFilePath().(string)+".log",
+			mu: new(sync.Mutex),
 		},
 	}
 }
@@ -161,6 +163,7 @@ func getMongodbLogger(config MongodbLogConfig) *Log {
 	return &Log{
 		Log: &MongodbLog{
 			Config:config,
+			mu: new(sync.Mutex),
 		},
 	}
 }
