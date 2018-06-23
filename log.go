@@ -32,10 +32,11 @@ var mysqlLogOnce sync.Once
 
 var MongodbLogger TTLog
 var mongodbLogOnce sync.Once
+
 type TTLog struct {
 	Logger *log.Logger
-
 }
+
 type Log struct {
 	Log DoLog
 }
