@@ -2,7 +2,7 @@ package logger
 
 import (
 	"os"
-	"sync"
+	//"sync"
 	"time"
 	"fmt"
 )
@@ -10,7 +10,7 @@ import (
 type FileLog struct {
 	FilePath  string
 	SaveLevel Level
-	mu *sync.Mutex
+	//mu *sync.Mutex
 }
 
 
@@ -57,8 +57,8 @@ type FileLog struct {
 
 
 func (fileLog *FileLog) DoWrite(buf []byte) (n int, err error) {
-	fileLog.mu.Lock()
-	defer fileLog.mu.Unlock()
+	//fileLog.mu.Lock()
+	//defer fileLog.mu.Unlock()
 
 
 	filePath := fmt.Sprintf("%s_%s.log", fileLog.FilePath, time.Now().Format("2006-01-02"))
