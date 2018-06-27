@@ -155,7 +155,7 @@ func getFileLogger(config FileLogConfig) *Log {
 	return &Log{
 		Log: &FileLog{
 			FilePath: config.GetFilePath().(string)+".log",
-			mu: new(sync.Mutex),
+			//mu: new(sync.Mutex),
 		},
 	}
 }
