@@ -5,13 +5,13 @@ import (
 	"errors"
 	"gopkg.in/mgo.v2/bson"
 	"time"
-	"sync"
+//	"sync"
 )
 
 type MongodbLog struct {
 	Config MongodbLogConfig
 	Connection *mgo.Session
-	mu *sync.Mutex
+//	mu *sync.Mutex
 }
 
 type mongodbLogContent struct {
@@ -20,8 +20,8 @@ type mongodbLogContent struct {
 } 
 
 func (mongodbLog *MongodbLog) DoWrite(buf []byte) (n int, err error) {
-	mongodbLog.mu.Lock()
-	defer mongodbLog.mu.Unlock()
+	//mongodbLog.mu.Lock()
+	//defer mongodbLog.mu.Unlock()
 
 	if mongodbLog.Connection != nil {
 		err = mongodbLog.Connection.Ping()

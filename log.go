@@ -146,7 +146,7 @@ func getMysqlLogger(config MysqlLogConfig) *Log {
 	return &Log{
 		Log: &MysqlLog{
 			Config:config,
-			mu: new(sync.Mutex),
+			//mu: new(sync.Mutex),
 		},
 	}
 }
@@ -164,7 +164,7 @@ func getMongodbLogger(config MongodbLogConfig) *Log {
 	return &Log{
 		Log: &MongodbLog{
 			Config:config,
-			mu: new(sync.Mutex),
+			//mu: new(sync.Mutex),
 		},
 	}
 }

@@ -5,19 +5,19 @@ import (
 	"fmt"
 	"errors"
 	_ "github.com/go-sql-driver/mysql"
-	"sync"
+	//"sync"
 )
 
 
 type MysqlLog struct {
 	Config MysqlLogConfig
 	Connection *sql.DB
-	mu *sync.Mutex
+	//mu *sync.Mutex
 }
 
 func (mysqlLog *MysqlLog) DoWrite(buf []byte) (n int, err error) {
-	mysqlLog.mu.Lock()
-	defer mysqlLog.mu.Unlock()
+	//mysqlLog.mu.Lock()
+	//defer mysqlLog.mu.Unlock()
 
 	if mysqlLog.Connection == nil {
 
