@@ -62,7 +62,7 @@ func Test_GetLogger(t *testing.T) {
 		if err != nil {
 			fmt.Println("mysql err")
 		}else{
-			llog.Println("mysql")
+			llog.Println(driver)
 		}
 	}
 
