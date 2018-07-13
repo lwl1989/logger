@@ -5,7 +5,6 @@ import (
 	"errors"
 	"gopkg.in/mgo.v2/bson"
 	"time"
-//	"sync"
 )
 
 type MongodbLog struct {
@@ -23,14 +22,13 @@ func (mongodbLog *MongodbLog) DoWrite(buf []byte) (n int, err error) {
 	//mongodbLog.mu.Lock()
 	//defer mongodbLog.mu.Unlock()
 
-	if mongodbLog.Connection != nil {
+	if mongodbLog.Connection == nil {
+		mongodbLog.DoConnection()
+	}else{
 		err = mongodbLog.Connection.Ping()
 		if err != nil {
 			mongodbLog.Connection.Close()
-			mongodbLog.Connection, err = mgo.Dial(mongodbLog.Config.GetMongodbDns())
-			if err != nil {
-				return 0, errors.New("mongodb can't connection")
-			}
+			mongodbLog.DoConnection()
 		}
 	}
 
@@ -49,3 +47,12 @@ func (mongodbLog *MongodbLog) DoWrite(buf []byte) (n int, err error) {
 
 	return len(content.Content), nil
 }
+
+func (mongodbLog *MongodbLog) DoConnection() {
+	var err error
+	mongodbLog.Connection, err = mgo.Dial(mongodbLog.Config.GetMongodbDns())
+	if err != nil {
+		panic("mongodb can't connection")
+	}
+}
+
