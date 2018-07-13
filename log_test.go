@@ -56,26 +56,35 @@ func (configs *configs) GetFilePath() interface{} {
 
 func Test_GetLogger(t *testing.T) {
 	var conf = &configs{}
-
-	logMysql,err := logger.GetLogger("mysql", conf)
-	if err != nil {
-		fmt.Println("mysql err")
-	}else{
-		logMysql.Println("mysql")
+	var drivers = []string{"mysql","mongodb","file"}
+	for _,driver := range drivers {
+		llog,err := logger.GetLogger(driver, conf)
+		if err != nil {
+			fmt.Println("mysql err")
+		}else{
+			llog.Println("mysql")
+		}
 	}
 
-	logMongodb,err := logger.GetLogger("mongodb", conf)
-	if err != nil {
-		fmt.Println("mongodb err")
-	}else{
-		logMongodb.Println("mongodb")
-	}
-
-	logFile,err := logger.GetLogger("file", conf)
-	if err != nil {
-		fmt.Println("file err")
-	}else{
-		logFile.Println("file")
-	}
+	//logMysql,err := logger.GetLogger("mysql", conf)
+	//if err != nil {
+	//	fmt.Println("mysql err")
+	//}else{
+	//	logMysql.Println("mysql")
+	//}
+	//
+	//logMongodb,err := logger.GetLogger("mongodb", conf)
+	//if err != nil {
+	//	fmt.Println("mongodb err")
+	//}else{
+	//	logMongodb.Println("mongodb")
+	//}
+	//
+	//logFile,err := logger.GetLogger("file", conf)
+	//if err != nil {
+	//	fmt.Println("file err")
+	//}else{
+	//	logFile.Println("file")
+	//}
 
 }
