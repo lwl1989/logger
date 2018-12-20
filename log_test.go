@@ -3,7 +3,6 @@ package logger
 import (
 	"testing"
 	"fmt"
-	"github.com/lwl1989/logger"
 )
 
 type configs struct {
@@ -54,13 +53,24 @@ func (configs *configs) GetFilePath() interface{} {
 	return "/tmp/test"
 }
 
+func TestFileLog_DoWrite(t *testing.T) {
+	var conf = &configs{}
+	llog,err := GetLogger("file", conf)
+	if err != nil {
+		fmt.Println("file err")
+	}else{
+		llog.Println("success")
+	}
+}
+
+
 func Test_GetLogger(t *testing.T) {
 	var conf = &configs{}
 	var drivers = []string{"mysql","mongodb","file"}
 	for _,driver := range drivers {
-		llog,err := logger.GetLogger(driver, conf)
+		llog,err := GetLogger(driver, conf)
 		if err != nil {
-			fmt.Println("mysql err")
+			fmt.Println(driver+" err")
 		}else{
 			llog.Println(driver)
 		}
