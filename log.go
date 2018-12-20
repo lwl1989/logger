@@ -5,6 +5,7 @@ import (
 	"log"
 	//"time"
 	"errors"
+	"fmt"
 )
 
 type Level uint16
@@ -103,7 +104,7 @@ func GetLogger(driver string, config interface{}) (*TTLog,error)  {
  */
 func (TTLog *TTLog) SetFileLogPath (config FileLogConfig){
 	getFileLogger(config)
-	TTLog.Logger = log.New(getFileLogger(config), "", log.LstdFlags|log.Llongfile)
+	TTLog.Logger = log.New(getFileLogger(config), "", log.LstdFlags|log.Lshortfile)
 }
 
 //rewrite log Write
@@ -114,13 +115,15 @@ func (Log *Log) Write(p []byte) (n int, err error) {
 
 //rewrite log Println
 func (TTLog *TTLog) Println(v... interface{}) {
-	TTLog.Logger.Println(v)
+	//calldepth 2 => 3
+	//because the level add one
+	TTLog.Logger.Output(3, fmt.Sprintln(v...))
 }
 
 //get a file logger
 func GetFileLogger(config FileLogConfig) (*TTLog) {
 	logOnce.Do(func() {
-		Logger.Logger = log.New(getFileLogger(config), "", log.LstdFlags|log.Llongfile)
+		Logger.Logger = log.New(getFileLogger(config), "", log.LstdFlags|log.Lshortfile)
 	})
 	return &Logger
 }
@@ -128,7 +131,7 @@ func GetFileLogger(config FileLogConfig) (*TTLog) {
 //get a mysql logger
 func GetMysqlLogger(config MysqlLogConfig) (*TTLog) {
 	mysqlLogOnce.Do(func() {
-		MysqlLogger.Logger = log.New(getMysqlLogger(config), "", log.LstdFlags|log.Llongfile)
+		MysqlLogger.Logger = log.New(getMysqlLogger(config), "", log.LstdFlags|log.Lshortfile)
 	})
 	return &MysqlLogger
 }
@@ -136,7 +139,7 @@ func GetMysqlLogger(config MysqlLogConfig) (*TTLog) {
 //get a mysql logger
 func GetMongodbLogger(config MongodbLogConfig) (*TTLog) {
 	mongodbLogOnce.Do(func() {
-		MongodbLogger.Logger = log.New(getMongodbLogger(config), "", log.LstdFlags|log.Llongfile)
+		MongodbLogger.Logger = log.New(getMongodbLogger(config), "", log.LstdFlags|log.Lshortfile)
 	})
 	return &MongodbLogger
 }
