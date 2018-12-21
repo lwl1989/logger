@@ -35,7 +35,7 @@ var MongodbLogger TTLog
 var mongodbLogOnce sync.Once
 
 type TTLog struct {
-	Logger *log.Logger
+	*log.Logger
 }
 
 type Log struct {
@@ -117,7 +117,7 @@ func (Log *Log) Write(p []byte) (n int, err error) {
 func (TTLog *TTLog) Println(v... interface{}) {
 	//calldepth 2 => 3
 	//because the level add one
-	TTLog.Logger.Output(3, fmt.Sprintln(v...))
+	TTLog.Output(3, fmt.Sprintln(v...))
 }
 
 //get a file logger
