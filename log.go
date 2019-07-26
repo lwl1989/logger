@@ -5,6 +5,7 @@ import (
 	"log"
 	//"time"
 	"errors"
+	"fmt"
 )
 
 type Level uint16
@@ -115,6 +116,10 @@ func (Log *Log) Write(p []byte) (n int, err error) {
 //rewrite log Println
 func (TTLog *TTLog) Println(v... interface{}) {
 	TTLog.Logger.Println(v)
+}
+
+func (TTLog *TTLog) Sprintf(format string, v... interface{}) {
+    TTLog.Println(fmt.Sprintf(format, v))
 }
 
 //get a file logger
